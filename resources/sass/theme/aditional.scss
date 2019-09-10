@@ -1,0 +1,37 @@
+.company-desc p {
+    font-size: 14px;
+    color: #555;
+}
+
+.footer-wrapper.v1 .contact-info .text, .footer-wrapper.v1 .contact-info .text a, .footer-wrapper.v1 .contact-info .icon, .footer-wrapper.v1 .social-buttons li a i {
+    color: #555;
+}
+
+.footer-top-area .footer-content .title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 20px;
+}
+
+.footer-bottom-area p {
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 400;
+    color: #555;
+}
+
+.footer-wrapper.v1 .footer-bottom-area {
+    border-top: 1px solid rgba(217, 217, 217, 0.98);
+}
+
+.footer-wrapper.footer-fixed {
+    background-size: auto;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.coupon-section{
+    background: #F5F6F7
+}

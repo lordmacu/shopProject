@@ -1,0 +1,297 @@
+
+/*=====================================
+        Responsive css
+========================================*/
+@media only screen and (min-width: 992px) {
+    .dash-content-wrap {
+        margin-left: 275px;
+        margin-top: 75px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .statistic__item {
+        padding: 30px;
+    }
+
+    .statistic__item h2 {
+        font-size: 35px;
+    }
+
+    .statistic__item .desc {
+        font-size: 20px;
+    }
+
+    .au-message__item-inner {
+        padding: 15px;
+        padding-right: 10px;
+        padding-bottom: 15px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .popular-listing {
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 991px) {
+
+    .menu-sidebar {
+        top: 0;
+        right: -300px;
+        left: auto;
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-sidebar.show-sidebar {
+        right: 0;
+    }
+
+    .header-wrap2 {
+        justify-content: space-between;
+    }
+
+    .db-top-header {
+        left: 0;
+        position: relative;
+    }
+
+    .dash-breadcrumb {
+        padding: 35px 0;
+    }
+
+
+    .header-button .header-button-item .search-dropdown {
+        top: 63px;
+        right: -75px;
+        transform-origin: 70% top;
+    }
+
+    .header-button .header-button-item .search-dropdown::before {
+        right: 79px;
+    }
+
+    .header-button .header-button-item .notifi-dropdown {
+        top: 55px;
+        right: -145px;
+        transform-origin: 80% top;
+    }
+
+    .header-button .header-button-item .notifi-dropdown::before {
+        margin-left: 0;
+        left: auto;
+        right: 45px;
+    }
+
+
+    .dash-breadcrumb-content {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .dash-breadcrumb-content .dash-breadcrumb-left {
+        order: 2;
+        margin-top: 25px;
+    }
+
+    .dash-breadcrumb-content > button {
+        margin-bottom: 15px;
+    }
+
+    .dash-bookings,
+    .dash-review-wrap,
+    .dash-add-listing,
+    .recent-activity,
+    .invoice-panel,
+    .db-add-list-wrap,
+    .inbox-wrap,
+    .popular-listing {
+
+        margin-bottom: 50px;
+
+    }
+
+    @media (max-width: 767px) {
+
+        .container-fluid {
+            padding: 0 15px;
+        }
+
+        .header-button-item span {
+
+            font-size: 15px;
+        }
+
+        .list_general > ul > li {
+            padding-left: 30px;
+        }
+
+        .list_general > ul span {
+            float: right;
+            display: inline-block;
+        }
+
+        .most-viewed-item {
+            display: block;
+        }
+
+        .most-viewed-detail {
+            padding-left: 0;
+            margin: 15px 0 0 0;
+        }
+
+        .most-viewed-img {
+            max-width: 100%;
+        }
+
+        .au-message__item-text .text {
+            margin: 0;
+            padding: 0;
+        }
+
+        .au-message__item-time {
+            margin-top: 10px;
+        }
+
+        .listing-button {
+            position: relative;
+            right: auto;
+            top: 0;
+            transform: none;
+            margin: 10px 0 0 0;
+        }
+
+        .avatar-wrap {
+            float: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .au-message__item-inner {
+            padding: 15px;
+            padding-right: 10px;
+            padding-bottom: 15px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .header-button-item {
+            font-size: 22px;
+        }
+
+        ul.buttons {
+            position: relative;
+            right: 0;
+            top: 20px;
+        }
+
+        .db-add-listing label {
+            margin-top: 15px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .db-add-listing .filter-input {
+            margin-bottom: 15px;
+        }
+
+        .notify-bottom a {
+            font-size: 15px;
+        }
+
+        .mess-btn a.btn.v3 {
+            margin-top: 15px;
+        }
+
+        .sm-left {
+            float: left !important;
+        }
+    }
+
+    @media (max-width: 510px) {
+        .db-booking-wrap .db-booking-item .booking-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            position: relative;
+            left: 0;
+            top: 5px;
+            margin-bottom: 20px;
+        }
+
+        .db-booking-item {
+            margin: 0 -30px 30px -30px;
+            padding: 0 30px 35px 35px;
+        }
+
+        .db-booking-item .booking-info h6 {
+
+            width: 120px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .act-wrap .alert > i {
+            font-size: 15px;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .recent-activity .act-wrap .alert {
+            padding: 0 15px 25px 40px;
+        }
+
+        .act-wrap button.close span i {
+            right: 0%;
+        }
+
+        .dash-breadcrumb-left .breadcrumb-menu ul li a,
+        .dash-breadcrumb-left .breadcrumb-menu ul li {
+            font-size: 14px;
+        }
+
+        .invoice-panel th {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .invoice-panel tr td {
+            font-size: 13px;
+            width: 150px;
+        }
+
+        .header-button .header-button-item:first-child {
+            margin-right: 15px;
+        }
+
+        .dash-review-wrap .review-img img {
+            margin-bottom: 10px;
+        }
+
+        .au-chat__content {
+            padding: 30px 15px;
+
+        }
+
+        .send-mess {
+            padding: 12px 15px;
+        }
+
+        .au-chat-textfield {
+            padding: 10px;
+        }
+
+        .customer-content p {
+            margin-top: 15px;
+        }
+
+        .customer-text {
+            margin: 30px 0 0;
+        }
+
+        .customer-review {
+            margin-bottom: 0;
+        }
+    }
