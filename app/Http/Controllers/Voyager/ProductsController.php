@@ -300,8 +300,9 @@ class ProductsController extends VoyagerBaseController
         $allRegions=$regionModel->getAllByCountry();
 
        $this->checkDefaultLatitude();
-        
-        return Voyager::view($view, compact('allRegions','dataType', 'dataTypeContent', 'isModelTranslatable', 'allCities', 'allCategories', 'categoriesForProduct','cityForProduct'));
+                $organizatorByCountry =$organizators->getAllByCountry();
+
+        return Voyager::view($view, compact('organizatorByCountry','allRegions','dataType', 'dataTypeContent', 'isModelTranslatable', 'allCities', 'allCategories', 'categoriesForProduct','cityForProduct'));
     }
     
     
