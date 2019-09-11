@@ -53,9 +53,10 @@ class Product extends Model
     
     
     public function getFeaturedProducts(){
+        
          return $this->where('featured', true)
                 ->take(8)
-                ->whereIn("region_id", getRegionCountries())
+                ->whereIn("city_id", getRegionCountries())
                 ->with("categories")
                 ->inRandomOrder()
                 ->get();

@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use TCG\Voyager\Traits\Resizable;
 
 
 class Region extends Model
 {
+            use Resizable;
+
     public function getAllByCountry(){
         
         $countries= \Session::get('countries');
@@ -19,10 +22,16 @@ class Region extends Model
                 ->get();
     }
     
-    public function products()
-    {
-        return $this->hasMany('App\Product');
+   
+      public function cities(){
+        return $this->hasMany("App\City")->with("products");
     }
     
-    
+     public function getAllRegionsByCountry(){
+        $country=\Session::get('country');
+        return $this
+                ->where("country_id",$country->id)
+                ->with("cities")
+                ->get();
+    }
 }

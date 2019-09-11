@@ -143,17 +143,17 @@
             <div class="col-md-12">
                 <div class="swiper-container popular-place-wrap">
                     <div class="swiper-wrapper">
-                        @foreach($cities as $city)
+                        @foreach($regions as $region)
                         <div class="swiper-slide popular-item">
                             <div class="single-place">
-                                <img class="single-place-image" src="{{Voyager::image($city->thumbnail('feature', 'image'))}}" alt="place-image">
+                                <img class="single-place-image" src="{{Voyager::image($region->thumbnail('feature', 'image'))}}" alt="place-image">
                                 <div class="single-place-content">
                                     <h2 class="single-place-title">
-                                        <a href="grid-fullwidth-map.html">{{$city->name}}</a>
+                                        <a href="grid-fullwidth-map.html">{{$region->name}}</a>
                                     </h2>
                                     <ul class="single-place-list">
-                                        <li><span>{{$city->regions->count()}}</span> Regiones</li>
-                                        <li><span>{{countProductRegins($city->regions)}}</span> Listing</li>
+                                        <li><span>{{$region->cities->count()}}</span> Regiones</li>
+                                        <li><span>{{countProductRegins($region->cities)}}</span> Listing</li>
                                     </ul>
                                     <a class="btn v6 explore-place" href="grid-fullwidth-map.html">Explore</a>
                                 </div>

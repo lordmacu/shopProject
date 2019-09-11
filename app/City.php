@@ -9,9 +9,25 @@ class City extends Model
 {
         use Resizable;
 
-     public function regions(){
-        return $this->hasMany("App\Region")->with("products");
+   
+    
+     public function getAllByCountry(){
+        
+        $countries= \Session::get('countries');
+
+        return $this
+                ->select("cities.*")
+                ->join("regions","regions.id","=","cities.region_id")
+                ->join("countries","countries.id","=","regions.country_id")
+                ->whereIn("countries.id",$countries)
+                ->get();
     }
+    
+     public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
+    
     
     public function getAllCitiesByCountry(){
         $country=\Session::get('country');

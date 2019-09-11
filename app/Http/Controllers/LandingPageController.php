@@ -21,16 +21,17 @@ class LandingPageController extends Controller
         
        $product=new Product();
        $getFeaturedProducts=$product->getFeaturedProducts();
+       
         $categories= new Category();
         $getAllFeaturedCategories=$categories->getAllFeaturedCategories();
 
-        $city= new City();
-        $getAllCitiesByCountry=$city->getAllCitiesByCountry();
+        $region= new Region();
+        $getAllRegionsByCountry=$region->getAllRegionsByCountry();
 
         
         return view('landing-page')
                 ->with('products', $getFeaturedProducts)
-                ->with("cities",$getAllCitiesByCountry)
+                ->with("regions",$getAllRegionsByCountry)
                 ->with('categories', $getAllFeaturedCategories);
     }
 }

@@ -51,8 +51,8 @@
                                 @php
                                     $dataTypeRows = $dataType->{(isset($dataTypeContent->id) ? 'editRows' : 'addRows' )};
                                 @endphp
-                                <?php $hiddenRows=array("image","product_belongsto_region_relationship","latitude","longitude","product_belongsto_type_relationship") ?>
-                                <?php $hiddenFields=array("product_belongsto_region_relationship","product_belongsto_organizator_relationship") ?>
+                                <?php $hiddenRows=array("image","product_belongsto_city_relationship","latitude","longitude","product_belongsto_type_relationship") ?>
+                                <?php $hiddenFields=array("product_belongsto_city_relationship","product_belongsto_organizator_relationship") ?>
                                 @foreach($dataTypeRows as $row)
                                     <!-- GET THE DISPLAY OPTIONS -->
                                     @php
@@ -137,8 +137,8 @@
                                 @endforeach
                                         
                                   <div class="form-group">
-                                                <label>Region</label>
-                                                <select class="form-control" name="region_id">
+                                                <label>City</label>
+                                                <select class="form-control" name="city_id">
                                                     @foreach ($allRegions as $region)
                                                         <option value="{{ $region->id }}" @if(isset($regionForProduct))  {{ $regionForProduct->contains($region) ? 'selected' : '' }} @endif>{{ $region->name }}</option>
                                                     @endforeach

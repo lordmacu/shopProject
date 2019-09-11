@@ -50,8 +50,8 @@ function getRegionCountries(){
     
     $country=\Session::get('country');
     $regions=[];
-    foreach($country->cities as $city){
-        foreach ($city->regions as $region){
+    foreach($country->regions as $city){
+        foreach ($city->cities as $region){
             $regions[]=$region->id;
         }
     }

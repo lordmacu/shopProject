@@ -72,9 +72,12 @@ class ProductsController extends VoyagerBaseController
 
             $countries= \Session::get('countries');
             
-            $query->join("regions","regions.id","=","products.region_id");
-            $query->join("cities","cities.id","=","regions.city_id");
-            $query->join("countries","countries.id","=","cities.country_id");
+            $query->join("cities","cities.id","=","products.city_id");
+
+            $query->join("regions","regions.id","=","cities.region_id");
+            
+            
+            $query->join("countries","countries.id","=","regions.country_id");
             $query->whereIn("countries.id",$countries);
             
             if ($orderBy && in_array($orderBy, $dataType->fields())) {
@@ -173,8 +176,12 @@ class ProductsController extends VoyagerBaseController
         
         $categoriesForProduct = $product->categories()->get();
         
-        $regionModel=new Region();
+        $regionModel=new City();
         $allRegions=$regionModel->getAllByCountry();
+        
+        
+        
+        
         $organizators= new Organizator();
         $organizatorByCountry =$organizators->getAllByCountry();
         $regionForProduct =  $product->region()->get();
