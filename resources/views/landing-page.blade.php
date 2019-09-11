@@ -174,7 +174,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center">
-                <h2 class="section-title v1">What's happening?</h2>
+                <h2 class="section-title v1">Los mejores Toures</h2>
                 
             </div>
             <div class="col-md-12">
@@ -207,17 +207,17 @@
                                         <p><a href="#">3 Reviews</a></p>
                                     </div>
                                 </div>-->
-                                <ul class="trending-address">
+                                @if($product->organizator)<ul class="trending-address">
                                     <li><i class="ion-ios-location"></i>
-                                        <p>1690 Brown Avenue,Barline</p>
+                                    
+                                        <p>{{$product->organizator->name}}</p>
                                     </li>
-                                    <li><i class="ion-ios-telephone"></i>
-                                        <p>+864-940-3419</p>
-                                    </li>
+                                   
                                     <li><i class="ion-android-globe"></i>
-                                        <p>www.thaishow.com</p>
+                                        <p>{{$product->organizator->address}}</p>
                                     </li>
                                 </ul>
+                                @endif
                                 <div class="trending-bottom mar-top-15 pad-bot-30">
                                     <div class="trend-left float-left">
                                         <span class="round-bg green"><i class="{{$product->categories[0]->icon}}"></i></span>
@@ -307,20 +307,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2 text-center">
-                <h2 class="section-title v1">Trending Places</h2>
+                <h2 class="section-title v1">Los mejores Eventos</h2>
             </div>
             <div class="col-md-12">
                 <div class="swiper-container trending-place-wrap">
                     <div class="swiper-wrapper">
+                          @foreach ($events as $product)
                         <div class="swiper-slide trending-place-item">
                             <div class="trending-img">
-                                <img src="images/category/places/place-1.jpg" alt="#">
+                                <img src="{{Voyager::image($product->thumbnail('mobile', 'image'))}}" alt="#">
                                 <span class="trending-rating-green">7</span>
                                 <span class="save-btn"><i class="icofont-heart"></i></span>
                             </div>
                             <div class="trending-title-box">
-                                <h4><a href="single-listing-one.html">Four Seasons Resort</a></h4>
-                                <div class="customer-review">
+                                <h4><a href="single-listing-one.html">{{$product->name}}</a></h4>
+                               <!--- <div class="customer-review">
                                     <div class="rating-summary float-left">
                                         <div class="rating-result" title="60%">
                                             <ul class="product-rating">
@@ -335,280 +336,34 @@
                                     <div class="review-summury float-right">
                                         <p><a href="#">3 Reviews</a></p>
                                     </div>
-                                </div>
-                                <ul class="trending-address">
+                                </div>-->
+                                  @if($product->organizator)<ul class="trending-address">
                                     <li><i class="ion-ios-location"></i>
-                                        <p>4210 Khale Street,Florence,USA</p>
+                                    
+                                        <p>{{$product->organizator->name}}</p>
                                     </li>
-                                    <li><i class="ion-ios-telephone"></i>
-                                        <p>+843-600-2040</p>
-                                    </li>
+                                   
                                     <li><i class="ion-android-globe"></i>
-                                        <p>www.laresorta.com</p>
+                                        <p>{{$product->organizator->address}}</p>
                                     </li>
                                 </ul>
+                                @endif
                                 <div class="trending-bottom mar-top-15 pad-bot-30">
                                     <div class="trend-left float-left">
-                                        <span class="round-bg pink"><i class="icofont-hotel"></i></span>
-                                        <p><a href="#">Hotel</a></p>
+                                        <span class="round-bg pink"><i class="{{$product->categories[0]->icon}}"></i></span>
+                                        <p><a href="#">{{$product->categories[0]->name}}</a></p>
 
                                     </div>
                                     <div class="trend-right float-right">
-                                        <div class="trend-open"><i class="ion-clock"></i>
-                                            Open <p>till 11.00pm</p>
+                                        <div class="trend-open">
+                                            <div class="trend-open mar-top-5"><i class="icofont-price"></i>{{$product->price}}</div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide trending-place-item">
-                            <div class="trending-img">
-                                <img src="images/category/places/cafe.jpg" alt="#">
-                                <span class="trending-rating-orange">9</span>
-                                <span class="save-btn"><i class="icofont-heart"></i></span>
-                            </div>
-                            <div class="trending-title-box">
-                                <h4><a href="single-listing-two.html">Cafe Intermezzo</a></h4>
-                                <div class="customer-review">
-                                    <div class="rating-summary float-left">
-                                        <div class="rating-result" title="60%">
-                                            <ul class="product-rating">
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star-half"></i></li>
-                                                <li><i class="ion-android-star-half"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="review-summury float-right">
-                                        <p><a href="#">5 Reviews</a></p>
-                                    </div>
-                                </div>
-                                <ul class="trending-address">
-                                    <li><i class="ion-ios-location"></i>
-                                        <p>2721 Andy Street,ELLSWORTH,USA</p>
-                                    </li>
-                                    <li><i class="ion-ios-telephone"></i>
-                                        <p>+605-344-1198</p>
-                                    </li>
-                                    <li><i class="ion-android-globe"></i>
-                                        <p>www.cafemezzo.com</p>
-                                    </li>
-
-                                </ul>
-
-                                <div class="trending-bottom mar-top-15 pad-bot-30">
-                                    <div class="trend-left float-left">
-                                        <span class="round-bg green"><i class="icofont-tea"></i></span>
-                                        <p><a href="#">Cafe</a></p>
-                                    </div>
-
-                                    <div class="trend-right float-right">
-                                        <div class="trend-closed">
-                                            Closed
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide trending-place-item">
-                            <div class="trending-img">
-                                <img src="images/category/places/place-5.jpg" alt="#">
-                                <span class="trending-rating-pink">6.5</span>
-                                <span class="save-btn"><i class="icofont-heart"></i></span>
-                            </div>
-                            <div class="trending-title-box">
-                                <h4><a href="single-listing-one.html">Lagoon Theme Park</a></h4>
-                                <div class="customer-review">
-                                    <div class="rating-summary float-left">
-                                        <div class="rating-result" title="60%">
-                                            <ul class="product-rating">
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star-half"></i></li>
-                                                <li><i class="ion-android-star-half"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="review-summury float-right">
-                                        <p><a href="#">3 Reviews</a></p>
-                                    </div>
-                                </div>
-                                <ul class="trending-address">
-                                    <li><i class="ion-ios-location"></i>
-                                        <p>1301 Avenue, Brooklyn, NY 11230</p>
-                                    </li>
-                                    <li><i class="ion-ios-telephone"></i>
-                                        <p>+44 20 7336 8898</p>
-                                    </li>
-                                    <li><i class="ion-android-globe"></i>
-                                        <p>www.burgerandlobster.com</p>
-                                    </li>
-
-                                </ul>
-
-                                <div class="trending-bottom mar-top-15 pad-bot-30">
-                                    <div class="trend-left float-left">
-                                        <span class="round-bg red"><i class="icofont-travelling"></i></span>
-                                        <p><a href="#">Travel</a></p>
-                                    </div>
-                                    <div class="trend-right float-right">
-                                        <div class="trend-open"><i class="ion-clock"></i>
-                                            Open <p>till 10.00pm</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide trending-place-item">
-                            <div class="trending-img">
-                                <img src="images/category/places/place-4.jpg" alt="#">
-                                <span class="trending-rating-green">8</span>
-                                <span class="save-btn"><i class="icofont-heart"></i></span>
-                            </div>
-                            <div class="trending-title-box">
-                                <h4><a href="single-listing-one.html">The Katikies</a></h4>
-                                <div class="customer-review">
-                                    <div class="rating-summary float-left">
-                                        <div class="rating-result" title="60%">
-                                            <ul class="product-rating">
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star-half"></i></li>
-                                                <li><i class="ion-android-star-half"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="review-summury float-right">
-                                        <p><a href="#">3 Reviews</a></p>
-                                    </div>
-                                </div>
-                                <ul class="trending-address">
-                                    <li><i class="ion-ios-location"></i>
-                                        <p>1301 Avenue, Brooklyn, NY 11230</p>
-                                    </li>
-                                    <li><i class="ion-ios-telephone"></i>
-                                        <p>+44 20 7336 8898</p>
-                                    </li>
-                                    <li><i class="ion-android-globe"></i>
-                                        <p>www.burgerandlobster.com</p>
-                                    </li>
-
-                                </ul>
-
-                                <div class="trending-bottom mar-top-15 pad-bot-30">
-                                    <div class="trend-left float-left">
-                                        <span class="round-bg pink"><i class="icofont-hotel"></i></span>
-                                        <p><a href="#">Hotel</a></p>
-
-                                    </div>
-                                    <div class="trend-right float-right">
-                                        <div class="trend-open"><i class="ion-clock"></i>
-                                            Open <p>till 10.00pm</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide trending-place-item">
-                            <div class="trending-img">
-                                <img src="images/category/places/place-9.jpg" alt="#">
-                                <span class="trending-rating-orange">6.5</span>
-                                <span class="save-btn"><i class="icofont-heart"></i></span>
-                            </div>
-                            <div class="trending-title-box">
-                                <h4><a href="single-listing-two.html">Genji Restaurant</a></h4>
-                                <div class="customer-review">
-                                    <div class="rating-summary float-left">
-                                        <div class="rating-result" title="60%">
-                                            <ul class="product-rating">
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star-half"></i></li>
-                                                <li><i class="ion-android-star-half"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="review-summury float-right">
-                                        <p><a href="#">3 Reviews</a></p>
-                                    </div>
-                                </div>
-                                <ul class="trending-address">
-                                    <li><i class="ion-ios-location"></i>
-                                        <p>1301 Avenue, Brooklyn, NY 11230</p>
-                                    </li>
-                                    <li><i class="ion-ios-telephone"></i>
-                                        <p>+44 20 7336 8898</p>
-                                    </li>
-                                    <li><i class="ion-android-globe"></i>
-                                        <p>www.burgerandlobster.com</p>
-                                    </li>
-                                </ul>
-                                <div class="trending-bottom mar-top-15 pad-bot-30">
-                                    <div class="trend-left float-left">
-                                        <span class="round-bg green"><i class="icofont-fast-food"></i></span>
-                                        <p><a href="#">Restaurant</a></p>
-                                    </div>
-                                    <div class="trend-right float-right">
-                                        <div class="trend-open"><i class="ion-clock"></i>
-                                            Open <p>till 10.00pm</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide trending-place-item">
-                            <div class="trending-img">
-                                <img src="images/category/places/place-11.jpg" alt="#">
-                                <span class="trending-rating-green">8</span>
-                                <span class="save-btn"><i class="icofont-heart"></i></span>
-                            </div>
-                            <div class="trending-title-box">
-                                <h4><a href="single-listing-one.html">The Straling</a></h4>
-                                <div class="customer-review">
-                                    <div class="rating-summary float-left">
-                                        <div class="rating-result" title="60%">
-                                            <ul class="product-rating">
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star"></i></li>
-                                                <li><i class="ion-android-star-half"></i></li>
-                                                <li><i class="ion-android-star-half"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="review-summury float-right">
-                                        <p><a href="#">3 Reviews</a></p>
-                                    </div>
-                                </div>
-                                <ul class="trending-address">
-                                    <li><i class="ion-ios-location"></i>
-                                        <p>1301 Avenue, Brooklyn, NY 11230</p>
-                                    </li>
-                                    <li><i class="ion-ios-telephone"></i>
-                                        <p>+44 20 7336 8898</p>
-                                    </li>
-                                    <li><i class="ion-android-globe"></i>
-                                        <p>www.burgerandlobster.com</p>
-                                    </li>
-                                </ul>
-                                <div class="trending-bottom mar-top-15 pad-bot-30">
-                                    <div class="trend-left float-left">
-                                        <span class="round-bg green"><i class="ion-ios-cart"></i></span>
-                                        <p><a href="#">Shop</a></p>
-                                    </div>
-                                    <div class="trend-right float-right">
-                                        <div class="trend-closed">
-                                            closed
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       @endforeach
                     </div>
                 </div>
                 <div class="trending-pagination"></div>

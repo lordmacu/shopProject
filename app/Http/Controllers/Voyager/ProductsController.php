@@ -302,10 +302,10 @@ class ProductsController extends VoyagerBaseController
 
         
                  $categoriesForProduct = collect([]);
-                         $regionModel=new Region();
-
+         $regionModel=new City();
         $allRegions=$regionModel->getAllByCountry();
-
+        
+        
        $this->checkDefaultLatitude();
                $organizators= new Organizator();
 

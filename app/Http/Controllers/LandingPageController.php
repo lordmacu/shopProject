@@ -20,7 +20,8 @@ class LandingPageController extends Controller
     {
         
        $product=new Product();
-       $getFeaturedProducts=$product->getFeaturedProducts();
+       $getFeaturedProductsTours=$product->getFeaturedProducts(2);
+       $getFeaturedProductsEvents=$product->getFeaturedProducts(1);
        
         $categories= new Category();
         $getAllFeaturedCategories=$categories->getAllFeaturedCategories();
@@ -30,7 +31,8 @@ class LandingPageController extends Controller
 
         
         return view('landing-page')
-                ->with('products', $getFeaturedProducts)
+                ->with('products', $getFeaturedProductsTours)
+                ->with('events', $getFeaturedProductsEvents)
                 ->with("regions",$getAllRegionsByCountry)
                 ->with('categories', $getAllFeaturedCategories);
     }

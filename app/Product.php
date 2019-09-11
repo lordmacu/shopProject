@@ -52,12 +52,13 @@ class Product extends Model
     }
     
     
-    public function getFeaturedProducts(){
+    public function getFeaturedProducts($type){
         
          return $this->where('featured', true)
                 ->take(8)
                 ->whereIn("city_id", getRegionCountries())
                 ->with("categories")
+                 ->where("type_id",$type)
                 ->inRandomOrder()
                 ->get();
         
