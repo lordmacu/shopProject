@@ -184,7 +184,7 @@ class ProductsController extends VoyagerBaseController
         
         $organizators= new Organizator();
         $organizatorByCountry =$organizators->getAllByCountry();
-        $regionForProduct =  $product->region()->get();
+        $regionForProduct =  $product->city()->get();
         $organizatorsForProduct =  $product->organizator()->get();
          
         
