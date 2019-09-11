@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use TCG\Voyager\Traits\Resizable;
 
 class Coupon extends Model
 {
+    
+    use Resizable;
+
     public static function findByCode($code)
     {
         return self::where('code', $code)->first();
@@ -20,5 +24,12 @@ class Coupon extends Model
         } else {
             return 0;
         }
+    }
+    
+     public function getAllCouponsByCountry(){
+        $country=\Session::get('country');
+        return $this
+                ->where("country_id",$country->id)
+                ->get();
     }
 }

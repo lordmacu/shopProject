@@ -51,7 +51,9 @@
                                 @php
                                     $dataTypeRows = $dataType->{(isset($dataTypeContent->id) ? 'editRows' : 'addRows' )};
                                 @endphp
-                                <?php $hiddenRows=array("image","product_belongsto_city_relationship","latitude","longitude","product_belongsto_type_relationship") ?>
+                                
+                                
+                                <?php $hiddenRows=array("image","product_belongsto_city_relationship","latitude","longitude","product_belongsto_type_relationship","product_belongsto_coupon_relationship","service_free") ?>
                                 <?php $hiddenFields=array("product_belongsto_city_relationship","product_belongsto_organizator_relationship") ?>
                                 @foreach($dataTypeRows as $row)
                                     <!-- GET THE DISPLAY OPTIONS -->
@@ -149,7 +151,7 @@
                                 <div class="form-group">
                                                 <label>Organizator</label>
                                                 <select class="form-control" name="organizator_id">
-                                                    <option>Select Organizator</option>
+                                                    <option value="0">Select Organizator</option>
                                                     @foreach ($organizatorByCountry as $organizator)
                                                         <option value="{{ $organizator->id }}" @if(isset($organizatorsForProduct))  {{ $organizatorsForProduct->contains($organizator) ? 'selected' : '' }} @endif>{{ $organizator->name }}</option>
                                                     @endforeach

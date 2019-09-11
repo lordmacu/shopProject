@@ -63,9 +63,25 @@ class Product extends Model
                 ->get();
         
     }
+    
+    public function getCuoponProducts(){
+        
+         return $this
+                ->whereIn("city_id", getRegionCountries())
+                 ->has("coupon")
+                ->with("coupon")
+                ->inRandomOrder()
+                ->get();
+        
+    }
     public function region()
     {
         return $this->hasOne('App\Region',"id","region_id");
+    }
+    
+    public function coupon()
+    {
+        return $this->belongsTo('App\Coupon');
     }
     
      public function organizator()

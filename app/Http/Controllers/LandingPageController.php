@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use App\Region;
 use App\City;
+use App\Coupon;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -29,11 +30,14 @@ class LandingPageController extends Controller
         $region= new Region();
         $getAllRegionsByCountry=$region->getAllRegionsByCountry();
 
-        
-        return view('landing-page')
+        $coupon= new Product();
+         $getCuoponProducts=$coupon->getCuoponProducts();
+
+         return view('landing-page')
                 ->with('products', $getFeaturedProductsTours)
                 ->with('events', $getFeaturedProductsEvents)
                 ->with("regions",$getAllRegionsByCountry)
+                ->with("coupons",$getCuoponProducts)
                 ->with('categories', $getAllFeaturedCategories);
     }
 }

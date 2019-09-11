@@ -382,31 +382,33 @@
             <div class="col-md-12">
                 <div class="swiper-container coupon-wrap">
                     <div class="swiper-wrapper pad-bot-15">
+                        
+                        @foreach($coupons as $coupon)
                         <div class="swiper-slide coupon-content">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="coupon-img">
-                                        <img class="img-fluid" src="images/category/coupon/3.jpg" alt="...">
+                                        <img class="img-fluid" src="{{Voyager::image($coupon->coupon->thumbnail('mobile', 'image'))}}" alt="...">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="coupon-desc float-right">
-                                        <h4>30% Discount</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id porta leo.</p>
+                                        @if($coupon->coupon->type=="fixed")<h4>$ {{$coupon->coupon->value}} de Descuento</h4>@else <h4>{{$coupon->coupon->value}}% de Descuento</h4> @endif
+                                        <p>{{$coupon->coupon->description}}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row align-items-center">
                                 <div class="col-md-6">
                                     <div class="coupon-owner mar-top-20">
-                                        <a href="single-listing-one.html">Favola Restaurant</a>
-                                        <a href="#" class="rating">
+                                        <a href="single-listing-one.html">{{$coupon->name}}</a>
+                                       <!--- <a href="#" class="rating">
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star"></i>
                                             <i class="ion-android-star-half"></i>
-                                        </a>
+                                        </a>-->
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -418,115 +420,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide coupon-content">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="coupon-img">
-                                        <img class="img-fluid" src="images/category/coupon/5.jpg" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="coupon-desc float-right">
-                                        <h4>20% Off</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id porta leo.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row align-items-center">
-                                <div class="col-md-6">
-                                    <div class="coupon-owner mar-top-20">
-                                        <a href="single-listing-one.html">Orion Spa</a>
-                                        <a href="#" class="rating">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star-half"></i>
-                                            <i class="ion-android-star-half"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="float-left">
-                                        <a class="btn v1" data-toggle="modal" data-target="#coupon_wrap">
-                                            Get Coupon
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide coupon-content">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="coupon-img">
-                                        <img class="img-fluid" src="images/category/coupon/4.jpg" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="coupon-desc float-right">
-                                        <h4>25% Discount</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id porta leo.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row align-items-center">
-                                <div class="col-md-6">
-                                    <div class="coupon-owner mar-top-20">
-                                        <a href="single-listing-one.html">Hotel La Muro</a>
-                                        <a href="#" class="rating">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star-half"></i>
-                                            <i class="ion-android-star-half"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="float-left">
-                                        <a class="btn v1" data-toggle="modal" data-target="#coupon_wrap">
-                                            Get Coupon
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-slide coupon-content">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="coupon-img">
-                                        <img class="img-fluid" src="images/category/coupon/1.jpg" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="coupon-desc float-right">
-                                        <h4>50% OFF</h4>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id porta leo.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row align-items-center">
-                                <div class="col-md-6">
-                                    <div class="coupon-owner mar-top-20">
-                                        <a href="single-listing-one.html">Penguin Shop</a>
-                                        <a href="#" class="rating">
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star"></i>
-                                            <i class="ion-android-star-half"></i>
-                                            <i class="ion-android-star-half"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="float-left">
-                                        <a class="btn v1" data-toggle="modal" data-target="#coupon_wrap">
-                                            Get Coupon
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                        @endforeach
 
                     </div>
                 </div>
@@ -604,7 +498,7 @@
 </div>
 -->
 <!--mobile app ends-->
-<!--Testimonial Section start-->
+<!--Testimonial Section start
 <div class="hero-client-section pad-bot-70 section-padding"  style="background-image: url(images/bg/bg2.png)">
     <div class="container">
         <div class="row">
@@ -688,7 +582,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 <!--Testimonial Section ends-->
 <!--Blog Posts starts
 <div class="blog-posts v2 mar-bot-40 pad-top-60 section-padding">
