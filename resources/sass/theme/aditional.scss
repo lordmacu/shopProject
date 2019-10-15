@@ -35,3 +35,26 @@
 .coupon-section{
     background: #F5F6F7
 }
+
+
+.list-gallery-thumb img{
+     height: 60px;
+    object-fit: cover; 
+}
+
+.carousel-inner{
+    .carousel-item{
+        img{
+                height: 450px;
+    object-fit: cover;
+        }
+    }
+}
+
+.similar-listing{
+    margin-top: 100px !important;
+}
+
+.nice-select.open .list{
+        height: auto !important;
+}

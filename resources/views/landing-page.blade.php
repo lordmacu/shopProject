@@ -56,13 +56,17 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <h1 class="hero__title places-tab">
-                    What's Your Plan Today ?
+                    ¿CUÁL ES TU PLAN PA' HOY?
                 </h1>
                 <h1 class="hero__title events-tab">
-                    Explore great events.
+                    ¡LOS MEJORES EVENTOS!
                 </h1>
-                <p class="hero__description">
-                    All the top locations – from restaurants and clubs, to galleries, famous places and more..
+                <p class="hero__description places-description">
+                    Encuentra los lugares más TOP y las mejores experiencias turísticas con guías locales
+                </p>
+                
+                <p class="hero__description events-description" style="display:none">
+                    Desde restaurantes y clubes, hasta galerías, sitios históricos y más.
                 </p>
             </div>
             <div class="col-md-12 text-center mar-top-20">
@@ -218,7 +222,7 @@
                                     </li>
                                 </ul>
                                 @endif
-                                <div class="trending-bottom mar-top-15 pad-bot-30">
+                                @if(count($product->categories)>0)<div class="trending-bottom mar-top-15 pad-bot-30">
                                     <div class="trend-left float-left">
                                         <span class="round-bg green"><i class="{{$product->categories[0]->icon}}"></i></span>
                                         <p><a href="#">{{$product->categories[0]->name}}</a></p>
@@ -227,6 +231,7 @@
                                         <div class="trend-open mar-top-5"><i class="icofont-price"></i>{{$product->price}}</div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                          @endforeach
@@ -348,7 +353,7 @@
                                     </li>
                                 </ul>
                                 @endif
-                                <div class="trending-bottom mar-top-15 pad-bot-30">
+                                @if(count($product->categories)>0)<div class="trending-bottom mar-top-15 pad-bot-30">
                                     <div class="trend-left float-left">
                                         <span class="round-bg pink"><i class="{{$product->categories[0]->icon}}"></i></span>
                                         <p><a href="#">{{$product->categories[0]->name}}</a></p>
@@ -361,6 +366,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                        @endforeach

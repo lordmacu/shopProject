@@ -197,7 +197,7 @@
 					marker = new google.maps.Marker({
 						position: new google.maps.LatLng(item.location_latitude, item.location_longitude),
 						map: mapObject,
-						icon: '/images/others/marker.png',
+						icon: '/images/others/marker_1.png',
 					});
 
 					if ('undefined' === typeof markers[key])

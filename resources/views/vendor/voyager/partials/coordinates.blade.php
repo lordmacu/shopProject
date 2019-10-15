@@ -6,6 +6,7 @@
 </style>
 
 <script type="application/javascript">
+    
     function initMap() {
         @forelse($dataTypeContent->getCoordinates() as $point)
             var center = {lat: {{ $point['lat'] }}, lng: {{ $point['lng'] }}};
@@ -27,6 +28,6 @@
     }
 </script>
 
-<div id="map"/>
+<div id="map"/> 
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config('voyager.googlemaps.key') }}&callback=initMap"></script>

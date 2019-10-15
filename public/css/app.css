@@ -1770,6 +1770,26 @@ ul.buttons li {
   background: #F5F6F7;
 }
 
+.list-gallery-thumb img {
+  height: 60px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.carousel-inner .carousel-item img {
+  height: 450px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.similar-listing {
+  margin-top: 100px !important;
+}
+
+.nice-select.open .list {
+  height: auto !important;
+}
+
 /* 
 1. Bootstrap min CSS
 2. Jquery UI min  CSS
@@ -31082,7 +31102,7 @@ ul.list-inline li {
   background-position: top;
   height: 100%;
   padding: 15rem 0 12.5rem;
-  background-image: url(/images/hero-1.jpg?e04125700058635a82ec133e1be0aea2);
+  background-image: url("/tour.jpg");
   transition: all 0.5s ease-in-out;
   background-repeat: no-repeat;
   background-color: #fff;
@@ -31243,7 +31263,7 @@ ul.list-inline li {
 }
 
 .hero-events {
-  background: url(/images/slider-3.jpg?44c0f13fd93bb11b2ba527e6021f0489);
+  background: url("/events.jpg");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;

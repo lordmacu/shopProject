@@ -7,8 +7,39 @@
 @endsection
 
 @section('extra-js')
+
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_8C7p0Ws2gUu7wo0b6pK9Qu7LuzX2iWY&amp;libraries=places"></script>
 <script>
+    
+    @if($product->getCoordinates())
+var lat="{{$product->getCoordinates()[0]["lat"]}}";
+var lng="{{$product->getCoordinates()[0]["lng"]}}";
+    @endif
+    
+ $(function() {
+      var $startDate = $('.start-date');
+      var $endDate = $('.end-date');
+
+console.log("esta es la fecha ",new  Date('{{$product->start_date}}'));
+      $startDate.datepicker({
+        autoHide: true,
+        startDate: new  Date('{{$product->start_date}}'),
+
+      });
+      $endDate.datepicker({
+        autoHide: true,
+        startDate: $startDate.datepicker('getDate'),
+      });
+
+      $startDate.on('change', function () {
+          console.log($startDate.datepicker('getDate'));
+        $endDate.datepicker('setStartDate', $startDate.datepicker('getDate'));
+      });
+    });
+  
+    
+    
+    var marker="{{asset('images/others/marker.png')}}";
               new Swiper('.similar-list-wrap', {
             slidesPerView: 2,
             spaceBetween: 30,
@@ -34,7 +65,7 @@
 
 @section('content')
 
- <div class="listing-details-wrapper bg-h" style="background-image: url({{asset("images/single-listing/single-list-1.jpg")}})">
+ <div class="listing-details-wrapper bg-h" style="background-image: url({{ productImage($product->image) }}">
             <div class="overlay op-3"></div>
             <div class="container">
                 <div class="row">
@@ -43,25 +74,27 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-7 col-sm-12">
                                     <div class="single-listing-title float-left">
-                                        <p><a href="#" class="btn v6">Hotel</a></p>
-                                        <h2>Ocean Paradise <i class="icofont-tick-boxed"></i></h2>
-                                        <p><i class="ion-ios-location"></i> 864 W. Walnut Ave.
-                                            Avon, IN 46123</p>
-                                        <div class="list-ratings">
+                                       @if($product->city) <p><a href="#" class="btn v6">{{$product->city->name}}</a></p>@endif
+                                        
+                                        
+                                        <h2>{{$product->name}} <i class="icofont-tick-boxed"></i></h2>
+                                        @if($product->address)<p><i class="ion-ios-location"></i> {{$product->address}}</p>
+                                        @endif
+                                       <!--- <div class="list-ratings">
                                             <span class="ion-android-star"></span>
                                             <span class="ion-android-star"></span>
                                             <span class="ion-android-star"></span>
                                             <span class="ion-android-star"></span>
                                             <span class="ion-android-star-half"></span>
                                             <a href="#">(31 Reviews)</a>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-5 col-sm-12">
                                     <div class="list-details-btn text-right sm-left">
-                                        <div class="save-btn">
+                                      <!--  <div class="save-btn">
                                             <a href="#" class="btn v3 white"><i class="ion-heart"></i> Save</a>
-                                        </div>
+                                        </div>-->
                                         <div class="share-btn">
                                             <a href="#" class="btn v3 white"><i class="ion-android-share-alt"></i> Share</a>
                                             <ul class="social-share">
@@ -98,23 +131,18 @@
                             <div id="overview" class="list-details-section">
                                 <h4>Overview</h4>
                                 <div class="overview-content">
-                                    <p class="mar-bot-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta consectetur et porro voluptatem maiores quidem inventore harum explicabo deserunt fuga minima sed, sit nemo expedita. Dolor aliquid rerum recusandae excepturi.</p>
-                                    <p class="mar-bot-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, dicta, impedit. Eveniet incidunt provident minima totam aut facilis tenetur quam officia omnis dolorem! Autem iste fugit mollitia rerum quae, veritatis perferendis voluptas magni aliquam consequuntur, minima repellendus eveniet laboriosam iure.</p>
-                                </div>
+                                    <p class="mar-bot-10">{!!$product->description!!}</p>
+                                </div> 
+                                @if(count($product->amenities)>0)
                                 <div class="mar-top-20">
-                                    <h6>Amenities</h6>
+                                    <h6>Comodidades</h6>
                                     <ul class="listing-features">
-                                        <li><i class="icofont-rocket-alt-1"></i> Elevator in building</li>
-                                        <li><i class="icofont-wifi"></i> Free Wi Fi</li>
-                                        <li><i class="icofont-car-alt-3"></i> Free Parking on premises</li>
-                                        <li><i class="icofont-snow"></i>Air Conditioned</li>
-                                        <li><i class="icofont-gym-alt-1"></i>Fitness Center</li>
-                                        <li><i class="icofont-search-restaurant"></i> Instant Book</li>
-                                        <li><i class="icofont-architecture-alt"></i> Friendly workspace</li>
-                                        <li><i class="icofont-wheelchair"></i> Wheelchair Friendly</li>
-                                        <li><i class="icofont-paw"></i> Pet Friendly </li>
+                                        @foreach($product->amenities as $amenity)
+                                        <li><i class="{{$amenity->icon}}"></i> {{$amenity->name}}</li>
+                                       @endforeach
                                     </ul>
                                 </div>
+                                @endif
                             </div>
                             <div id="gallery" class="list-details-section">
                                 <h4>Gallery</h4>
@@ -148,7 +176,7 @@
                                     </a>
                                     @endif
                                     <!--Controls ends-->
-                                    <ol class="carousel-indicators  list-gallery-thumb">
+                                   @if(count(json_decode($product->images, true))>1) <ol class="carousel-indicators  list-gallery-thumb">
                                         
                                          @if ($product->images)
                                                 @foreach (json_decode($product->images, true) as $key=> $image)
@@ -159,6 +187,7 @@
                                           @endif
                                         
                                     </ol>
+                                   @endif
                                 </div>
                                 <!--/.Carousel Wrapper-->
                             </div>
@@ -445,30 +474,35 @@
                             <div class="sidebar-widget info">
                                 <h3><i class="ion-android-calendar"></i>Booking</h3>
                                 <div class="row">
+                                    
                                     <div class="col-md-12 mar-bot-15">
-                                        <div class="nice-select filter-input mar-top-0" tabindex="0"><span class="current">Select Room</span>
-                                            <ul class="list">
-                                                <li class="option selected focus">Standard Single Room </li>
-                                                <li class="option">Deluxe Room</li>
-                                                <li class="option">Signature Room</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mar-bot-15">
-                                        <div id="datepicker-from" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control" type="text" placeholder="Check In">
+                                        <div id="datepicker-from-p" class="input-group date" data-start-date="29-09-2019" data-date-format="dd-mm-yyyy">
+<input type="text" placeholder="Start date" aria-label="First name" class="form-control start-date">
                                             <span class="input-group-addon"><i class="icofont-ui-calendar"></i></span>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mar-bot-15">
-                                        <div id="datepicker-to" class="input-group date" data-date-format="dd-mm-yyyy">
-                                            <input class="form-control" type="text" placeholder="Check Out">
-                                            <span class="input-group-addon"><i class="icofont-ui-calendar"></i></span>
-                                        </div>
+                                  
+                                    <div class="col-md-12 mar-bot-15">
+                                        
+                                        @if($product->prices)
+                                        
+                                            @if(count(json_decode($product->prices,true))>1)<div class="nice-select filter-input mar-top-0" tabindex="0"><span class="current">Select Room</span>
+                                                <ul class="list">
+                                                   @foreach(json_decode($product->prices,true) as $price)
+                                                    <li class="option selected focus">{{$price["name"]}} ${{$price["value"]}}</li>
+                                                   @endforeach 
+                                                </ul>
+                                            </div>
+                                            @else
+                                                {{json_decode($product->prices,true)[0]["name"]}} ${{json_decode($product->prices,true)[0]["value"]}}
+                                            @endif
+                                        @else
+                                        Precio ${{$product->price}}
+                                         @endif
                                     </div>
                                     <div class="col-md-6 mar-bot-15">
                                         <div class="book-amount">
-                                            <label>Adult</label>
+                                            <label>Cantidad</label>
                                             <div class="input-group">
                                                 <span class="input-group-btn">
                                                     <button type="button" class="quantity-left-minus btn">
@@ -484,24 +518,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mar-bot-15">
-                                        <div class="book-amount">
-                                            <label>Children</label>
-                                            <div class="input-group">
-                                                <span class="input-group-btn">
-                                                    <button type="button" class="quantity-left-minus btn">
-                                                        <span class="ion-minus"></span>
-                                                    </button>
-                                                </span>
-                                                <input type="text" class="form-control input-number" value="1">
-                                                <span class="input-group-btn">
-                                                    <button type="button" class="quantity-right-plus btn">
-                                                        <span class="ion-plus"></span>
-                                                    </button>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                
                                 </div>
                                 <div class="book-btn text-center">
                                     <a href="booking.html"> Request To Book</a>
@@ -509,20 +526,21 @@
                             </div>
                             <div class="sidebar-widget">
                                 <div id="map"></div>
-                                <div class="address">
+                               @if($product->address) <div class="address">
                                     <span class="ion-ios-location"></span>
-                                    <p> 864 W. Walnut Ave. Avon, IN 46123 St James Pl,
-                                        Brooklyn</p>
+                                    <p> {{$product->address}}</p>
                                 </div>
-                                <div class="address">
+                               @endif
+                                <!--<div class="address">
                                     <span class="ion-ios-telephone"></span>
                                     <p> +44 20 7336 8898</p>
                                 </div>
                                 <div class="address">
                                     <span class="ion-android-globe"></span>
                                     <p>www.oceanparadise.com</p>
-                                </div>
+                                </div>-->
                             </div>
+                             <!--
                             <div class="sidebar-widget">
                                 <div class="business-time">
                                     <div class="business-title">
@@ -575,16 +593,14 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="sidebar-widget">
+                           <div class="sidebar-widget">
                                 <div class="coupon-widget" style="background-image: url({{asset("images/category/coupon/coupon-bg-1.jpg")}});">
                                     <div class="overlay op-5"></div>
                                     <a href="#" class="coupon-top">
                                         <span class="coupon-link-icon"></span>
                                         <h3>Book Now &amp; get 20% discount</h3>
                                         <div class="daily-deals-wrap v1">
-                                            <!-- countdown start -->
                                             <div class="countdown-deals text-center" data-countdown="2019/12/01"></div>
-                                            <!-- countdown end -->
                                         </div>
                                     </a>
                                     <div class="coupon-bottom">
@@ -592,7 +608,7 @@
                                         <div class="coupon-code">DL76T</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                             <div class="sidebar-widget follow">
                                 <div class="follow-img">
                                     <img src="{{asset("images/clients/reviewer-1.png")}}" class="img-fluid" alt="#">
@@ -632,7 +648,7 @@
                                     <li><a href="#" class="btn v6 dark">Eat &amp; Drink</a></li>
                                 </ul>
                             </div>
-                            
+                            -->
                         </div>
                     </div>
                 </div>

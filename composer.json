@@ -14,11 +14,14 @@
         "cartalyst/stripe-laravel": "^10.0",
         "fideloper/proxy": "~4.0",
         "hardevine/shoppingcart": "^2.6.1",
+        "larapack/hooks": "^1.0",
+        "larapack/voyager-hooks": "^1.2",
         "laravel/framework": "5.8.*",
         "laravel/scout": "^4.0",
         "laravel/tinker": "~1.0",
         "nicolaslopezj/searchable": "^1.9",
-        "tcg/voyager": "1.2.6"
+        "tcg/voyager": "1.2.6",
+        "wordpress-import": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

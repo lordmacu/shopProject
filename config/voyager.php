@@ -27,6 +27,7 @@ return [
     |
     */
 
+'prefix' => 'admin',
     'adminPassword' => env('ADMIN_PASSWORD', 'password'),
 
     /*

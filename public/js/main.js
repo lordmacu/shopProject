@@ -12,15 +12,7 @@
     /* ----------------------------------------
            datepicker
     ------------------------------------------- */
-    $("#datepicker-from").datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
-    $("#datepicker-to").datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
-
+   
     /*----------------------------------------
           Scroll to top
   ----------------------------------------*/
@@ -182,6 +174,7 @@
     if ($('#map').length > 0) {
         google.maps.event.addDomListener(window, 'load', init);
 
+
         function init() {
             // Basic options for a simple Google Map
             // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
@@ -190,7 +183,7 @@
                 zoom: 15,
 
                 // The latitude and longitude to center the map (always required)
-                center: new google.maps.LatLng(40.6700, -73.9400), // New York
+                center: new google.maps.LatLng(lat, lng), // New York
 
                 scrollwheel: false,
 
@@ -260,7 +253,7 @@
             // Create the Google Map using our element and options defined above
             var map = new google.maps.Map(mapElement, mapOptions);
 
-            var image = '/images/others/marker.png';
+            var image = '/images/others/marker_1.png';
             // Let's also add a marker while we're at it
             var marker = new google.maps.Marker({
                 position: new google.maps.LatLng(40.6700, -73.9400),
@@ -333,6 +326,10 @@
                             .find('.events-tab')
                             .fadeIn(500);
                     });
+                    
+                  
+   $('.places-description').hide();
+                   $(".events-description").show();
 
             } else {
                 $this.parents('.hero')
@@ -343,6 +340,9 @@
                             .find('.places-tab')
                             .fadeIn(500);
                     });
+                    
+                  $('.events-description').hide();
+                   $(".places-description").show();
             }
         });
 

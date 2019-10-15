@@ -146,6 +146,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+    Larapack\Hooks\HooksServiceProvider::class,
+    Larapack\VoyagerHooks\VoyagerHooksServiceProvider::class,
 
         /*
          * Package Service Providers...

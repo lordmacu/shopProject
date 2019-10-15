@@ -13,7 +13,7 @@ class Product extends Model
    // use SearchableTrait, Searchable;
     use Spatial;
     use Resizable;
-
+    protected $spatial = ['location'];
     protected $fillable = ['quantity'];
 
     /**
@@ -50,7 +50,12 @@ class Product extends Model
     {
         return $this->belongsTo('App\Category');
     }
-    
+
+
+public function amenities()
+    {
+        return $this->belongsToMany('App\Amenity');
+    }    
     
     public function getFeaturedProducts($type){
         
@@ -79,7 +84,13 @@ class Product extends Model
         return $this->hasOne('App\Region',"id","region_id");
     }
     
-    public function coupon()
+    public function pricesProduct()
+    {
+        return $this->hasMany('App\PriceProduct');
+    }
+    
+    
+     public function coupon()
     {
         return $this->belongsTo('App\Coupon');
     }

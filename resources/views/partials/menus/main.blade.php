@@ -12,8 +12,8 @@
         </li>
     @endforeach
          @guest
-    <li><a href="{{ route('register') }}">Sign Up</a></li>
-    <li><a href="{{ route('login') }}">Login</a></li>
+    <li><a href="{{ countryRoute('register') }}">Sign Up</a></li>
+    <li><a href="{{ countryRoute('login') }}">Login</a></li>
     @else
     <li>
         <a href="{{ countryRoute("users.edit") }}">My Account</a>

@@ -7,6 +7,8 @@ use App\Category;
 use App\City;
 use App\Region;
 use App\Organizator;
+use App\PriceProduct;
+use App\ProductInventary;
 
 use App\CategoryProduct;
 use Illuminate\Http\Request;
@@ -193,6 +195,127 @@ class ProductsController extends VoyagerBaseController
         return Voyager::view($view, compact("organizatorsForProduct","organizatorByCountry",'regionForProduct','allRegions','dataType', 'dataTypeContent', 'isModelTranslatable', 'allCategories', 'categoriesForProduct'));
     }
 
+    
+    public function updateInventary(Request $request){
+        
+        $priceProduct= PriceProduct::find($request->get("price_product_id"));
+        
+        
+            $productInventary= new ProductInventary();
+            $checkInventary=$productInventary->checkInventary($request->get("price_product_id"), $request->get("date"));
+            if(!$checkInventary){
+                $productInventary->price_product_id=$request->get("price_product_id");
+                $productInventary->quantity=$request->get("quantity");
+                $productInventary->date=$request->get("date");
+                $productInventary->save();
+            }else{
+                $checkInventary->quantity=$request->get("quantity");
+                $checkInventary->save();
+            }
+        
+
+        
+        
+        return $request->all();
+    }
+    public function checkInventary(Request $request){
+        
+        if($this->checkmydate($request->get("dateProduct"))){
+            
+        
+        $ProductInventary= new ProductInventary();
+        
+        if($request->get("typeProduct")==0){
+            $product= Product::find($request->get("idProduct"));
+            $priceProducts=$product->pricesProduct;
+            $ids=$priceProducts->pluck("id");;
+           
+            $checkInventaryByIdsAndDate=$ProductInventary->checkInventaryByIdsAndDate($ids, $request->get("dateProduct"));
+            $data=array();
+
+            if(count($checkInventaryByIdsAndDate)>0){
+
+                
+                foreach ($checkInventaryByIdsAndDate as $pp) {
+                    $PriceProduct= PriceProduct::find($pp->price_product_id);
+
+                    $data[]=array("quantity"=>$pp->quantity,"date"=>$request->get("dateProduct"),"name"=>$PriceProduct->name,"id"=>$PriceProduct->id);
+                }
+                 
+                 
+            }else{
+                foreach ($priceProducts as $pp) {
+                    $data[]=array("quantity"=>$pp->quantity,"date"=>$request->get("dateProduct"),"name"=>$pp->name,"id"=>$pp->id);
+                }
+            }
+
+            return array("data"=>array("status"=>200,"data"=>$data));
+
+        }else{
+            
+            $PriceProduct= PriceProduct::find($request->get("typeProduct"));
+
+            $checkInventary= $ProductInventary->checkInventary($request->get("typeProduct"), $request->get("dateProduct"));
+            $data=array();
+            if($checkInventary){
+                $data=array("quantity"=>$checkInventary->quantity,"date"=>$request->get("dateProduct"),"name"=>$PriceProduct->name,"id"=>$PriceProduct->id);
+            }else{
+                $product= Product::find($request->get("idProduct"));
+                
+                
+                
+                
+                
+                $data=array("quantity"=>$product->quantity,"date"=>$request->get("dateProduct"),"name"=>$PriceProduct->name,"id"=>$PriceProduct->id);
+            }
+            
+            return array("data"=>array("status"=>200,"data"=>array($data)));
+
+        }
+        }else{
+            return array("data"=>array("status"=>500,"error"=>"la fecha no es valida"));
+        }
+       
+        
+    }
+    
+    
+ public function checkmydate($date) {
+  $timestamp = strtotime($date);
+return $timestamp ? $date : null;
+}
+    
+    public function updatePrices($request,$id){
+        
+        
+        $priceProductModel= new PriceProduct();
+        $priceProductModel->deleteAllById($id);
+        
+         if($request->has("prices")){
+                $pricesJson= json_decode($request->get("prices"),true);
+                
+                foreach ($pricesJson as $priceJson) {
+                    if(isset($priceJson["name"])){
+                        $PriceProduct= new PriceProduct();
+                        $PriceProduct->name=$priceJson["name"];
+                        $PriceProduct->quantity=$priceJson["quantity"];
+                        $PriceProduct->value=$priceJson["value"];
+                        $PriceProduct->product_id=$id;
+                        $PriceProduct->save();
+                    }
+                    
+                }
+
+            }else{
+                $PriceProduct= new PriceProduct();
+                
+                $PriceProduct->product_id=$id;
+                $PriceProduct->name="Normal";
+                $PriceProduct->quantity=$request->get("quantity");
+                $PriceProduct->value=$request->get("prices");
+                $PriceProduct->save();
+            }
+    }
     // POST BR(E)AD
     public function update(Request $request, $id)
     {
@@ -201,6 +324,7 @@ class ProductsController extends VoyagerBaseController
         //config(['voyager.storage.disk' =>  "1/".config('voyager.storage.disk')]);
 
 
+       
         
        // return config('voyager.storage.disk');
         $slug = $this->getSlug($request);
@@ -210,6 +334,11 @@ class ProductsController extends VoyagerBaseController
         // Compatibility with Model binding.
         $id = $id instanceof Model ? $id->{$id->getKeyName()} : $id;
 
+        
+        
+        
+        
+        
         $data = call_user_func([$dataType->model_name, 'findOrFail'], $id);
 
         // Check permission
@@ -224,6 +353,9 @@ class ProductsController extends VoyagerBaseController
 
         if (!$request->ajax()) {
             $requestNew = $request;
+            
+           $this->updatePrices($request,$id);
+            
             $requestNew['price'] = $request->price;
 
             $this->insertUpdateData($requestNew, $slug, $dataType->editRows, $data);
@@ -337,7 +469,6 @@ class ProductsController extends VoyagerBaseController
      */
     public function store(Request $request)
     {
-        
        
         $slug = $this->getSlug($request);
 

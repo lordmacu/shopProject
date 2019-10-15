@@ -8,10 +8,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('login', ['uses' => 'Auth\AuthController@login', 'as' => 'login']);
         Route::post('login', ['uses' => 'Auth\AuthController@postLogin', 'as' => 'postlogin']);
 
-     
+    Route::post('checkInventary', 'Voyager\ProductsController@checkInventary')->name('checkInventary');
+    Route::post('updateInventary', 'Voyager\ProductsController@updateInventary')->name('updateInventary');
+
         
         
 });
+    Route::get('processprices', 'LandingPageController@processprices')->name('processprices');
 
 
 Route::group(['prefix' => '{country}',"middleware"=>["country"],"as"=>"country."], function () {

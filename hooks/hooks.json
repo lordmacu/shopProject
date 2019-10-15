@@ -1,1 +1,11 @@
-{}
+{
+    "last_remote_check": 1568681843,
+    "hooks": {
+        "wordpress-import": {
+            "name": "wordpress-import",
+            "description": "This hook will allow you to import your wordpress posts, pages, categories, and users from the WP XML export file.",
+            "version": "v1.0.3",
+            "enabled": true
+        }
+    }
+}
