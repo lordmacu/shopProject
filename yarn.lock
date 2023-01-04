@@ -642,6 +642,11 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@chenfengyuan/datepicker@^1.0.9":
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@chenfengyuan/datepicker/-/datepicker-1.0.10.tgz#33d544d80f8f0a10dcb6194136ea5639d285b3d5"
+  integrity sha512-w016ygdUgBY6hhV7HFKRy2DeSiRPPczekA6FJfIpmqQYh5leKne4WvW/YWOCY1xrQVvamdLyhMhbsn8vN5iQAg==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -3926,11 +3931,9 @@ json5@^1.0.1:
     minimist "^1.2.0"
 
 json5@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/json5/-/json5-2.1.0.tgz#e7a0c62c48285c628d20a10b85c89bb807c32850"
-  integrity sha512-8Mh9h6xViijj36g7Dxi+Y4S6hNGV96vcJZr/SrlHh1LR/pEn/8j/+qIBbs44YKl69Lrfctp4QD+AdWLTMqEZAQ==
-  dependencies:
-    minimist "^1.2.0"
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.3.tgz#78cd6f1a19bdc12b73db5ad0c61efd66c1e29283"
+  integrity sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==
 
 jsonfile@^3.0.0:
   version "3.0.1"
